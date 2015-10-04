@@ -1,0 +1,53 @@
+This package contains a sample program for the Mean Value Coordinates Jacobian and Hessian computation.
+The program loads a surface and a cage (OFF format), computes the MVC weights, gradients and Hessians w.r.t.
+the input cage for the first 50 vertices of the input surface. It outputs 3 files: outputWeights.txt, outputGradients.txt
+and outputHessians.txt.
+
+
+
+
+1) COMPILATION
+
+To compile this example program:
+go in the repertory
+type cmake .
+type make
+
+
+
+
+2) EXECUTION
+
+To use the program on the example, type:
+./mvcTest -m models/Armadillo.off -c models/cage.off
+
+
+
+
+3) CODE
+
+Look at main.cpp for a typical usage of the code for the computation of Mean Value Coordinates derivatives in 3D.
+
+The important function is:
+template< class T , class point_t , class mat_t >
+void computeCoordinatesAndDerivatives(
+    point_t const & eta , // INPUT
+    std::vector< std::vector< int > > const & cage_triangles , // INPUT
+    std::vector< point_t > const & cage_vertices , // INPUT
+    std::vector< point_t > const & cage_normals , // INPUT
+    std::vector< T > & weights , // OUTPUT
+    std::vector< point_t > & gradients , // OUTPUT
+    std::vector< mat_t > & Hessians) // OUTPUT
+
+It computes, for the input point eta, the MVC weights, gradients and Hessians, w.r.t. the input cage
+This implementation follows exactly the description given in the article.
+
+
+
+
+4) DISCLAIMER
+
+The mesh given in example (Armadillo.off) is courtesy of Aim At Shapes:
+http://www.shapes.aimatshape.net
+
+
