@@ -1,0 +1,154 @@
+DATA DISCLAIMER
+---------------
+The data-sets contained in this archive are freely available for research and
+non-commercial purposes only. They are provided courtesy of AIM@SHAPE and the 
+Large Geometric Models Archive at Georgia Tech. 
+
+
+CODE DISCLAIMER
+---------------
+This code is provided "as is", under the terms of the GNU Lesser General Public
+License, without warranty of any kind. 
+Copyright (C) Julien Tierny <tierny@telecom-paristech.fr>, March 2012. 
+
+
+RELATED PUBLICATION
+-------------------
+"Generalized Topological Simplification of Scalar Fields on Surfaces",
+Julien Tierny and Valerio Pascucci,
+IEEE Transactions on Visualization and Computer Graphics,
+Proceedings of IEEE VIS 2012.
+
+
+
+--------------------------------------------------------------------------------
+
+
+
+INSTRUCTIONS
+------------
+The following instructions are for Unix environments (MacOS, Linux, etc.). For
+Windows users, please follow the usual procedure to import a CMake project into
+VisualStudio (please be careful though, important directory paths may need to 
+be changed for the program to run properly).
+
+
+IMPORTANT NOTE
+--------------
+Due to submission storage limitations (50MB), not all of the data-sets shown in
+the paper are available in the archive. We tried to restrict ourselves to a 
+relevant subset of acceptable storage size.
+
+
+
+1) Compiling the code:
+----------------------
+The compilation of the code requires no third-party library. A recent version of
+CMake should be installed.
+After decompressing the archive, enter the "code+data" directory. This directory
+should contain the file "CMakeLists.txt". From there, enter the following
+commands (omit the "$" character):
+
+$ cmake .
+$ make
+
+
+
+2) Reproducing the results from the paper:
+------------------------------------------
+The example program loads an input surface (*off), an input scalar field (*ssf)
+and a constraint file (*stf) describing the constrained subset of singularities 
+to maintain. The program exports in VRML format both the input ("input.wrl") 
+and the output ("output.wrl") of the algorithm. 
+These files can directly be loaded with any standard VRML viewer, Paraview, 
+Blender, etc.  If these are copied to a different directory, please also copy 
+the directory "textures" for the scalar field texture to be imported correctly 
+in the viewer.
+The output scalar field is saved in the file "outputField.ssf".
+
+2a) Statistics
+--------------
+Here is an expectable output of the command line program:
+"
+[TriangleMesh] Surface read in 0.000111 s. (9 v, 16 e, 8 t).
+[Editor] Scalar field 'data/figure07/inputField.ssf' read.
+[Editor] Saving scene in 'input.wrl'...
+[SurfaceScalarField] Critical point update: 1.9e-05 s. (4 m, 1 s, 4 M)
+[SurfaceScalarField] 1 multiple saddle(s) (total extra multiplicity 2).
+[Editor] Scene saved in 'input.wrl'.
+[SurfaceScalarField] Critical point update: 2e-05 s. (3 m, 2 s, 4 M)
+[SurfaceScalarField] 1 multiple saddle(s) (total extra multiplicity 1).
+[SurfaceScalarField] Field simplified (ext.: 8 -> 7) in _ 4.4e-05 _ s. (1 it)
+[SurfaceScalarField] Simplification L_1 norm: 1 (5.55556 %)
+[SurfaceScalarField] Simplification L_2 norm: 1
+[SurfaceScalarField] Simplification L_infinity norm: 1 (50 %)
+[SurfaceScalarField] Critical point update: 1.7e-05 s. (3 m, 2 s, 4 M)
+[SurfaceScalarField] 1 multiple saddle(s) (total extra multiplicity 1).
+[SurfaceScalarField] Constrained topology correctly enforced.
+[Editor] Surface scalar field written in 'outputField.ssf'.
+[Editor] Field topology saved in 'outputTopology.sft'.
+[Editor] Saving scene in 'output.wrl'...
+[Editor] Scene saved in 'output.wrl'.
+"
+In the console output, the line starting by "[SurfaceScalarField] Field 
+simplified" gives the computation time of the simplification algorithm as 
+reported in the paper. Several other statistics are provided, including distance
+evaluations as reported in the paper.
+
+
+2b) Running the code
+--------------------
+From the same directory as earlier ("code+data", containing the file
+"CMakeLists.txt"), enter the following commands (omit the "$" character):
+
+Figure 1:
+---------
+$ ./generalSimplification -s data/figure01/inputSurface.off -f data/figure01/inputField.ssf -t data/figure01/persistence.stf
+
+$ ./generalSimplification -s data/figure01/inputSurface.off -f data/figure01/inputField.ssf -t data/figure01/area.stf
+
+$ ./generalSimplification -s data/figure01/inputSurface.off -f data/figure01/inputField.ssf -t data/figure01/user.stf
+
+$ ./generalSimplification -s data/figure01/inputSurface.off -f data/figure01/inputField.ssf -t data/figure01/random.stf
+
+Figure 5:
+---------
+$ ./generalSimplification -s data/figure05/inputSurface.off -f data/figure05/inputField.ssf -t data/figure05/constrainedTopology.stf
+
+Figure 7:
+---------
+$ ./generalSimplification -s data/figure07/inputSurface.off -f data/figure07/inputField.ssf -t data/figure07/constrainedTopology1.stf
+
+$ ./generalSimplification -s data/figure07/inputSurface.off -f data/figure07/inputField.ssf -t data/figure07/constrainedTopology2.stf
+
+Figure 10:
+----------
+$ ./generalSimplification -s data/figure10/inputSurface.off -f data/figure10/inputField.ssf -t data/figure10/constrainedTopology1.stf
+
+$ ./generalSimplification -s data/figure10/inputSurface.off -f data/figure10/inputField.ssf -t data/figure10/constrainedTopology2.stf
+
+$ ./generalSimplification -s data/figure10/inputSurface.off -f data/figure10/inputField.ssf -t data/figure10/constrainedTopology3.stf
+
+Figure 11:
+----------
+$ ./generalSimplification -s data/figure11/inputSurface.off -f data/figure11/inputField.ssf -t data/figure11/constrainedTopology.stf
+
+Please note that the files "input.wrl" and "output.wrl" will be overwritten at
+each execution.
+
+
+
+3) Using other data-sets:
+-------------------------
+Input surfaces must be in OFF format. Input scalar fields must be in SSF format
+and the topological constraints must be provided as an STF file.
+Please see the data-sets provided in the archive (all in plain ASCII format) for
+formating examples.
+On the command line, the path to the input surface should be preceded by "-s",
+the input field by "-f" and the constraint file by "-t".
+
+
+
+4) Using this implementation from your own code:
+------------------------------------------------
+Please see the source files "main.cpp" and "Editor.cpp" for usage examples.
