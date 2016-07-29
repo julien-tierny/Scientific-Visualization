@@ -1,0 +1,6 @@
+wtfit_add_baseCode_package(threeSkeleton)
+
+wtfit_add_vtkWrapper_package(vtkZeroSkeleton)
+wtfit_add_vtkWrapper_package(vtkOneSkeleton)
+
+wtfit_wrapup_library(libvtkThreeSkeleton "vtkThreeSkeleton.cpp")

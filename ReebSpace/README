@@ -1,0 +1,154 @@
+DATA DISCLAIMER
+===
+The data sets contained in this archive are the property of their copyright
+owners. They are made available in this archive for research purpose only. They 
+should not be redistributed publicly without their owner's permission.
+
+
+CODE DISCLAIMER
+===
+This code is provided "as is" without warranty of any kind. It is made available
+under the licensing terms described in the file 'LICENSE'.
+Copyright (c) Julien Tierny <julien.tierny@lip6.fr>, March 2016.
+
+
+RELATED PUBLICATION
+===
+"Jacobi Fiber Surfaces for Bivariate Reeb Space Computation",
+Julien Tierny and Hamish Carr,
+IEEE Transactions on Visualization and Computer Graphics,
+Proceedings of IEEE VIS 2016.
+
+
+---
+
+
+INSTRUCTIONS
+===
+The following instructions are for Unix environments (MacOS, Linux, etc.). For
+Windows users, please follow the usual procedure to import a CMake project into
+VisualStudio (please be careful though, important directory paths may need to 
+be changed for the program to run properly).
+
+
+IMPORTANT NOTE
+===
+Due to submission storage limitations (100MB), not all of the data-sets shown in
+the paper are available in the archive. We tried to restrict ourselves to a 
+relevant subset of acceptable storage size.
+
+
+1) Software requirements:
+==
+This code requires the VTK development libraries to be installed on the system 
+(version 6.1 or higher). Please see http://www.vtk.org/ for installation 
+instructions.
+A recent version of CMake (http://www.cmake.org) should be installed (version 
+2.8 or higher).
+
+
+2) Compiling the code:
+==
+After decompressing the archive, enter the following directory:
+
+ReebSpace/cmd/
+
+From there, enter the following commands (omit the "$" character, this may 
+take a LONG time):
+
+$ cmake .
+$ make
+
+
+3) Reproducing the results from the paper:
+==
+To reproduce Figure 7 (bitorus example), enter the following command from the 
+directory "ReebSpace/cmd/" (omit the "$" character):
+
+$ ./reebSpaceCmd -i ../data/bitorus.vtu -s 0.01
+
+Here is an expectable output of the command line program:
+"
+[Common] __        _______ _____ ___ _____        __  __    ____   ___  _  __
+[Common] \ \      / /_   _|  ___|_ _|_   _|      / /__\ \  |___ \ / _ \/ |/ /_
+[Common]  \ \ /\ / /  | | | |_   | |  | |       | |/ __| |   __) | | | | | '_ \
+[Common]   \ V  V /   | | |  _|  | |  | |       | | (__| |  / __/| |_| | | (_) |
+[Common]    \_/\_/    |_| |_|   |___| |_|       | |\___| | |_____|\___/|_|\___/
+[Common]                                         \_\  /_/
+[Common] Welcome!
+[Editor] Reading input mesh...
+[Editor]   done! (read 451935 vertices, 2555904 cells)
+[vtkReebSpace] VTK connectivity pre-processed.
+[vtkReebSpace] First field: 'u'
+[vtkReebSpace] Second field: 'v'
+[vtkReebSpace] Starting computation...
+[JacobiSet] Minimum edges: 416
+[JacobiSet] Saddle edges: 140
+[JacobiSet] Maximum edges: 420
+[JacobiSet] Multi-saddle edges: 0
+[JacobiSet] Data-set (3059040 edges) processed in 0.743437 s. (24 thread(s)).
+[JacobiSet] Jacobi edge rate: 0.0319054%
+[ReebSpace] 3 1-sheets and 4 0-sheets extracted in 0.00052309 s.
+[ReebSpace] Fiber surfaces computed in 5.98008 s. overall (24 thread(s)).
+[ReebSpace] 11 3-sheets computed in 0.6732 s.
+[ReebSpace] Data-set (451935 points) processed in 7.39767 s. TOTAL (24 
+thread(s)).
+[ReebSpace] Geometrical measures computed in 2.01741 s. (24 thread(s))
+[ReebSpace] Data prepared for simplification in 0.0288491 s.
+[ReebSpace] Sheet connectivity established.
+[ReebSpace] Data prepared for simplification in 0.018317 s.
+[ReebSpace] Simplifying with criterion 'Range Area' at threshold 0.01.
+[ReebSpace] Data prepared for simplification in 0.0185061 s.
+[ReebSpace] 6 3-sheets simplified in 0.000319004 s. (24 thread(s))
+[ReebSpace] Last 3-sheet simplified at threshold 0
+[ReebSpace] 5 3-sheets left.
+[vtkReebSpace] Preparing the VTK-output...
+[vtkReebSpace] Memory usage: 793.093 MB.
+[Common] Goodbye :)
+"
+
+In this console output, the line starting by "[ReebSpace] Data-set" and 
+including "TOTAL" gives the computation time of the algorithm as reported in 
+the paper.
+
+The program will output one file per dimension of Reeb space sheet, each 
+stored as a vtkUnstructuredGrid (directly loadable in ParaView). In particular, 
+the file output_3.vtu contains the segmentation of the geometry by the 3-sheets 
+of the Reeb space. Use the point data field "3-SheetId" to visualize this 
+segmentation. Note that vertices that belong to 0- or 1-sheets will have a 
+negative value for this field.
+
+To reproduce Figure 10 (gargoyle example, from left to right), enter the 
+following commands from the directory "ReebSpace/cmd/" (omit the "$" character):
+
+$ ./reebSpaceCmd -i ../data/gargoyle.vtu 
+
+$ ./reebSpaceCmd -i ../data/gargoyle.vtu -s 0.0001
+
+$ ./reebSpaceCmd -i ../data/gargoyle.vtu -s 0.02
+
+$ ./reebSpaceCmd -i ../data/gargoyle.vtu -s 0.05
+
+Note that the output files will be over-written after the execution of each of
+these commands.
+
+
+4) Program options and arguments:
+==
+From the directory "ReebSpace/cmd/", running the following command line will 
+display the program options and arguments:
+./reebSpaceCmd -h
+
+
+5) Using other data-sets:
+==
+Input files must be in VTU file format (VTK's file format for the 
+vtkUnstructuredGrid data-structure). The geometry must be a tetrahedral mesh. 
+The components of the bivariate data must be attached as independent scalar 
+fields on the point data of the object. When running the program, use the 
+options "-u" and "-v" to select such scalar fields if more than 2 are available.
+
+
+6) Using this implementation from your own code:
+==
+Please see the source file "ReebSpace/cmd/Editor.cpp" for usage examples.

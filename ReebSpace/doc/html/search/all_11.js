@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['rangearea',['rangeArea',['../classwtfit_1_1ReebSpace.html#a3fc62a0e2ae46cced7bc1ecfc6621552a392cf8b8b799536567511347043edf50',1,'wtfit::ReebSpace']]],
+  ['rangearea_5f',['rangeArea_',['../classwtfit_1_1ReebSpace_1_1Sheet3.html#ab0ea66421c75973af5204c5b2960ff8b',1,'wtfit::ReebSpace::Sheet3']]],
+  ['rank_5f',['rank_',['../classwtfit_1_1UnionFind.html#a53a5a085f44a6b4ec532624324fc85b6',1,'wtfit::UnionFind']]],
+  ['real',['real',['../namespacewtfit.html#ab78de8e8cfeec192fd80baa20e474e95',1,'wtfit']]],
+  ['real_5fmax',['REAL_MAX',['../Os_8h.html#a70fc4e60483cc1a5cb39dd935640cadc',1,'Os.h']]],
+  ['real_5fsignificant_5fdigits',['REAL_SIGNIFICANT_DIGITS',['../Os_8h.html#a985264636a55a9eb2225fdb81d6b4d3f',1,'Os.h']]],
+  ['real_5ftype',['REAL_TYPE',['../Os_8h.html#a7db5e8ee7c27e6fb5c9caf9d674ea949',1,'Os.h']]],
+  ['real_5ftype_5fstring',['REAL_TYPE_STRING',['../Os_8h.html#a5e053fd2ac5137e85ec829cc253d95f8',1,'Os.h']]],
+  ['reebspace',['ReebSpace',['../classwtfit_1_1ReebSpace.html',1,'wtfit']]],
+  ['reebspace',['ReebSpace',['../classwtfit_1_1ReebSpace.html#a97c019130b1c09d441ed8c61e88d02f6',1,'wtfit::ReebSpace']]],
+  ['reebspace_2ecpp',['ReebSpace.cpp',['../ReebSpace_8cpp.html',1,'']]],
+  ['reebspace_2eh',['ReebSpace.h',['../ReebSpace_8h.html',1,'']]],
+  ['reebspacedata',['ReebSpaceData',['../classwtfit_1_1ReebSpace_1_1ReebSpaceData.html',1,'wtfit::ReebSpace']]],
+  ['remeshintersections',['remeshIntersections',['../classwtfit_1_1FiberSurface.html#a0fc62458f4b13b64cf3b87c4e6174762',1,'wtfit::FiberSurface']]],
+  ['requestdata',['RequestData',['../classvtkReebSpace.html#a213676a7b23d0baf4641e47b7f673a41',1,'vtkReebSpace::RequestData()'],['../classvtkThreeSkeleton.html#a0da09831da22407db1f65a59ed1251a1',1,'vtkThreeSkeleton::RequestData()']]],
+  ['restart',['reStart',['../classwtfit_1_1Timer.html#a6cc2fb2cf7a2d9d96bd57f2f578f7e7d',1,'wtfit::Timer']]],
+  ['rmdir',['rmDir',['../classwtfit_1_1OsCall.html#a33c3cd6f0ad65d048d601f4971d883cc',1,'wtfit::OsCall']]],
+  ['rmfile',['rmFile',['../classwtfit_1_1OsCall.html#ad15bd2dcd657c02254e9dda827180abb',1,'wtfit::OsCall']]],
+  ['roundtonearestint',['roundToNearestInt',['../classwtfit_1_1OsCall.html#aa1fb36235a7ff690a0adcefa3ec7c779',1,'wtfit::OsCall']]]
+];

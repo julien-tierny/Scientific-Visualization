@@ -1,0 +1,6 @@
+wtfit_add_baseCode_package(reebSpace)
+wtfit_add_vtkWrapper_package(vtkOneSkeleton)
+wtfit_add_vtkWrapper_package(vtkZeroSkeleton)
+wtfit_add_vtkWrapper_package(vtkThreeSkeleton)
+
+wtfit_add_source("vtkReebSpace.cpp")
