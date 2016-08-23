@@ -1,0 +1,131 @@
+DATA DISCLAIMER
+===
+The data sets contained in this archive are the property of their copyright
+owners. They are made available in this archive for research purpose only. They
+should not be redistributed publicly without their owner's permission.
+
+
+CODE DISCLAIMER
+===
+This code is provided "as is" without warranty of any kind. It is made available
+under the licensing terms described in the file 'LICENSE'.
+
+
+RELATED PUBLICATION
+===
+"Contour Forests: Fast Multi-threaded Augmented Contour Trees"
+Charles Gueunet, Pierre Fortin, Julien Jomier, Julien Tierny
+Proceedings of IEEE LDAV 2016
+
+
+---
+
+
+INSTRUCTIONS
+===
+The following instructions are for Unix environments (MacOS, Linux, etc.). For
+Windows users, please follow the usual procedure to import a CMake project into
+VisualStudio (please be careful though, important directory paths may need to
+be changed for the program to run properly).
+
+
+IMPORTANT NOTE
+===
+Due to submission storage limitations (40MB), not all of the data-sets shown in
+the paper are available in the archive. We tried to restrict ourselves to a
+relevant subset of acceptable storage size.
+
+
+1) Software requirements:
+==
+This code requires the VTK development libraries to be installed on the system
+(version 6.1 or higher). Please see http://www.vtk.org/ for installation
+instructions.
+A recent version of CMake (http://www.cmake.org) should be installed (version
+2.8 or higher).
+
+
+2) Compiling the code:
+==
+After decompressing the archive, enter the following directory:
+
+contourForests/cmd/
+
+From there, enter the following commands (omit the "$" character):
+
+$ cmake .
+$ make
+
+If you are looking for benchmark, you may want to pass the
+    -DwithKamikaze=on
+during the cmake step.
+
+
+3) Reproducing the results from the paper:
+==
+
+$ ./contourForestsCmd -g ../data/boat.vti -n 4
+[Common] __        _______ _____ ___ _____        __  __    ____   ___  _  __
+[Common] \ \      / /_   _|  ___|_ _|_   _|      / /__\ \  |___ \ / _ \/ |/ /_
+[Common]  \ \ /\ / /  | | | |_   | |  | |       | |/ __| |   __) | | | | | '_ \
+[Common]   \ V  V /   | | |  _|  | |  | |       | | (__| |  / __/| |_| | | (_) |
+[Common]    \_/\_/    |_| |_|   |___| |_|       | |\___| | |_____|\___/|_|\___/
+[Common]                                         \_\  /_/
+[Common] Welcome!
+[Editor] Reading input mesh...
+[Editor]   done! (read 4096000 vertices, 4019679 cells)
+[vtkContourTreeV2] Launching computation for field 'Rot'...
+[ParallelContourTree] Allocations Sequentielles         0 : 0.0240748
+[ParallelContourTree] Sort                              0 : 0.210282
+[ParallelContourTree] Initialize Overlap                0 : 0.368193
+[ParallelContourTree] Alloc parallel                    0 : 0.156806
+[ParallelContourTree] ParallelBuild                     0 : 1.6366
+[ParallelContourTree] Stitch                            0 : 0.00135422
+[ParallelContourTree] Create Contour tree               0 : 0.034667
+[ParallelContourTree] TOTAL                             0 : 2.40805
+The tree have  1647 arcs
+Start VTK rendering ...
+[vtkContourTreeV2] Topological skeleton built in 0.19587s :
+[vtkContourTreeV2]   Arc - Resolution: 1
+[vtkContourTreeV2]   Smoothing: 0
+[vtkContourTreeV2] Topological segmentation built in 0.241386s :
+[vtkContourTreeV2]   RegionType: true
+[vtkContourTreeV2]   SegmentationId: true
+[vtkContourTreeV2] Memory usage: 412.864 MB.
+[Common] Goodbye :)
+
+4) Program options and arguments:
+==
+From the directory "contourForests/cmd/", running the following command line will
+display the program options and arguments:
+
+$ ./contourForestsCmd -h
+
+[Common] __        _______ _____ ___ _____        __  __    ____   ___  _  __
+[Common] \ \      / /_   _|  ___|_ _|_   _|      / /__\ \  |___ \ / _ \/ |/ /_
+[Common]  \ \ /\ / /  | | | |_   | |  | |       | |/ __| |   __) | | | | | '_ \
+[Common]   \ V  V /   | | |  _|  | |  | |       | | (__| |  / __/| |_| | | (_) |
+[Common]    \_/\_/    |_| |_|   |___| |_|       | |\___| | |_____|\___/|_|\___/
+[Common]                                         \_\  /_/
+[Common] Welcome!
+[CommandLine]
+[CommandLine] Usage:
+[CommandLine]   ./contourForestsCmd
+[CommandLine] Argument(s):
+[CommandLine]   [-d <Global debug level>]
+[CommandLine]   -g <Path to the input 3D grid>
+[CommandLine]   [-n <Thread number>]
+[CommandLine]   [-f <Field identifier>]
+[CommandLine]   [-s <Simplification threshold between 0 and 1>]
+
+5) Using other data-sets:
+==
+
+This plugins use VTK Unstructured Grid (vtu) or VTK Image Data (vti) files.
+In the case of an image data, an implicit triangulation is built.
+
+The scalar field must be a point data, with only one component.
+
+6) Using this implementation from your own code:
+==
+Please see the source files "contourForests/cmd/Editor.cpp" for usage examples.

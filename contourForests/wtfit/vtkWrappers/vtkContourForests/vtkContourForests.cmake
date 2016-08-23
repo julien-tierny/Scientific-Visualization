@@ -1,0 +1,7 @@
+wtfit_add_baseCode_package(geometry)
+wtfit_add_baseCode_package(contourForests)
+wtfit_add_baseCode_package(contourForestsTree)
+
+wtfit_add_vtkWrapper_package(vtkTriangulation)
+
+wtfit_add_source("vtkContourForests.cpp")

@@ -1,0 +1,4 @@
+wtfit_add_baseCode_package(explicitTriangulation)
+wtfit_add_baseCode_package(implicitTriangulation)
+
+wtfit_wrapup_library(libTriangulation "Triangulation.cpp")
